@@ -1,0 +1,17 @@
+/* v2 — tokens de finition : ce qui fait le « sens du détail » (filets, chiffres tabulaires, rythmes verticaux, états). */
+:root{
+  --hairline:1px solid var(--cm-gris-200);
+  --hairline-strong:1px solid var(--cm-gris-300);
+  --rule-title:3px;            /* filet tricolore sous les titres de section */
+  --rule-title-w:48px;
+  --marker-size:12px;          /* marqueur de frise */
+  --marker-line:2px;
+  --rhythm:1.5rem;             /* interligne de base × 1,5 */
+  --measure-narrow:58ch;
+  --caption-opacity:1;         /* jamais de texte translucide */
+  --photo-protect:linear-gradient(180deg,transparent 45%,rgba(21,17,14,0.72)); /* @kind other */
+  --tabular:tabular-nums;      /* @kind other */
+}
+[data-falc="true"] p{font-size:1.125rem;line-height:1.75;max-width:52ch}
+[data-links="strong"] a{text-decoration:underline;text-decoration-thickness:2px}
+h1,h2,h3,.num{font-variant-numeric:tabular-nums}

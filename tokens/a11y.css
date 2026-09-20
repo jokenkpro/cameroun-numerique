@@ -1,0 +1,22 @@
+/* Accessibilité — valeurs minimales garanties par le système (RGAA 4 / WCAG 2.2 AA). */
+:root{
+  --a11y-contrast-text:4.5; /* @kind other */
+  --a11y-contrast-large:3; /* @kind other */
+  --a11y-touch-min:2.75rem; /* 44px */
+  --a11y-focus-w:2px;
+  --a11y-line-max:75ch;
+  --a11y-text-min:1rem; /* jamais en-dessous de 16px sur mobile */
+  --a11y-skip-bg:var(--cm-jaune-500);
+  --a11y-skip-text:var(--cm-ebene);
+}
+/* Mode sombre — bascule volontaire (data-theme) ou préférence système */
+[data-theme="sombre"]{
+  --surface-page:var(--cm-ebene);--surface-card:var(--cm-gris-950);--surface-raised:var(--cm-gris-900);--surface-muted:var(--cm-gris-900);--surface-sunken:var(--cm-gris-950);--surface-inverse:var(--cm-papier);--surface-brand:var(--cm-vert-900);--surface-brand-soft:var(--cm-vert-950);
+  --text-heading:var(--cm-papier);--text-body:var(--cm-gris-100);--text-muted:var(--cm-gris-300);--text-subtle:var(--cm-gris-400);--text-disabled:var(--cm-gris-600);--text-inverse:var(--cm-ebene);--text-link:var(--cm-vert-300);--text-link-hover:var(--cm-vert-200);--text-brand:var(--cm-vert-300);
+  --border-default:var(--cm-gris-800);--border-strong:var(--cm-gris-600);--border-input:var(--cm-gris-300);--border-brand:var(--cm-vert-400);--border-focus:var(--cm-jaune-400);
+  --action-primary:var(--cm-vert-500);--action-primary-hover:var(--cm-vert-400);--action-primary-active:var(--cm-vert-300);--action-primary-text:var(--cm-ebene);
+  --action-secondary-border:var(--cm-vert-300);--action-secondary-text:var(--cm-vert-300);--action-secondary-hover:var(--cm-vert-950);--action-secondary-active:var(--cm-vert-900);
+  --action-tertiary-text:var(--cm-vert-300);--action-tertiary-hover:var(--cm-gris-900);
+  --status-success-bg:var(--cm-vert-950);--status-success:var(--cm-vert-300);--status-error-bg:var(--cm-rouge-900);--status-error:var(--cm-rouge-300);--status-warning-bg:var(--cm-jaune-900);--status-warning:var(--cm-jaune-300);--status-info-bg:var(--cm-indigo-900);--status-info:var(--cm-indigo-300);
+  --shadow-focus:0 0 0 2px var(--cm-ebene),0 0 0 4px var(--cm-jaune-400);--focus-ring:2px solid var(--cm-jaune-400);
+}

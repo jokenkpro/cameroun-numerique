@@ -1,0 +1,11 @@
+/* Motifs culturels rendus en CSS pur (aucune image). À utiliser en filet, en fond de bandeau ou en séparateur — jamais derrière du texte courant. */
+:root{
+  /* Ndop : tissu indigo bamoun/bamiléké — losanges blancs réservés sur fond indigo */
+  --motif-ndop:repeating-linear-gradient(45deg,transparent 0 10px,rgba(255,255,255,0.10) 10px 12px),repeating-linear-gradient(-45deg,transparent 0 10px,rgba(255,255,255,0.10) 10px 12px),var(--cm-indigo-800); /* @kind other */
+  /* Toghu : velours noir brodé, fils jaune/rouge — hachures fines */
+  --motif-toghu:repeating-linear-gradient(90deg,var(--cm-ebene) 0 14px,var(--cm-jaune-600) 14px 16px,var(--cm-ebene) 16px 30px,var(--cm-rouge-600) 30px 32px); /* @kind other */
+  /* Latérite : trame de terre, points chauds sur papier */
+  --motif-laterite:radial-gradient(circle at 1px 1px,var(--cm-laterite-200) 1px,transparent 1.5px) 0 0/12px 12px,var(--cm-papier); /* @kind other */
+  /* Bandeau tricolore vertical (marge gauche d'un document officiel) */
+  --brand-band-v:linear-gradient(180deg,var(--cm-vert-700) 0 33.33%,var(--cm-rouge-600) 33.33% 66.66%,var(--cm-jaune-500) 66.66% 100%); /* @kind other */
+}

@@ -1,0 +1,24 @@
+:root{
+  /* Surfaces */
+  --surface-page:var(--cm-papier);--surface-card:var(--cm-blanc);--surface-raised:var(--cm-blanc);--surface-muted:var(--cm-gris-50);--surface-sunken:var(--cm-gris-100);--surface-inverse:var(--cm-ebene);--surface-brand:var(--cm-vert-800);--surface-brand-soft:var(--cm-vert-50);--surface-overlay:rgba(21,17,14,0.56);
+  /* Texte */
+  --text-heading:var(--cm-ebene);--text-body:var(--cm-gris-900);--text-muted:var(--cm-gris-600);--text-subtle:var(--cm-gris-500);--text-disabled:var(--cm-gris-400);--text-inverse:var(--cm-papier);--text-on-brand:var(--cm-blanc);--text-link:var(--cm-vert-800);--text-link-hover:var(--cm-vert-950);--text-brand:var(--cm-vert-800);
+  /* Bordures */
+  --border-default:var(--cm-gris-200);--border-strong:var(--cm-gris-400);--border-input:var(--cm-gris-700);--border-brand:var(--cm-vert-800);--border-focus:var(--cm-indigo-600);
+  /* Actions */
+  --action-primary:var(--cm-vert-800);--action-primary-hover:var(--cm-vert-900);--action-primary-active:var(--cm-vert-950);--action-primary-text:var(--cm-blanc);
+  --action-secondary-border:var(--cm-vert-800);--action-secondary-text:var(--cm-vert-800);--action-secondary-hover:var(--cm-vert-50);--action-secondary-active:var(--cm-vert-100);
+  --action-tertiary-text:var(--cm-vert-800);--action-tertiary-hover:var(--cm-gris-100);
+  --action-danger:var(--cm-rouge-700);--action-danger-hover:var(--cm-rouge-800);--action-danger-text:var(--cm-blanc);
+  --action-disabled-bg:var(--cm-gris-200);--action-disabled-text:var(--cm-gris-500);
+  /* Sémantique d'état */
+  --status-success:var(--cm-vert-700);--status-success-bg:var(--cm-vert-50);--status-success-border:var(--cm-vert-700);
+  --status-error:var(--cm-rouge-700);--status-error-bg:var(--cm-rouge-50);--status-error-border:var(--cm-rouge-700);
+  --status-warning:var(--cm-jaune-800);--status-warning-bg:var(--cm-jaune-50);--status-warning-border:var(--cm-jaune-600);
+  --status-info:var(--cm-indigo-700);--status-info-bg:var(--cm-indigo-50);--status-info-border:var(--cm-indigo-700);
+  /* Accents culturels */
+  --accent-kola:var(--cm-kola-600);--accent-kola-soft:var(--cm-kola-50);--accent-laterite:var(--cm-laterite-600);--accent-laterite-soft:var(--cm-laterite-50);--accent-indigo:var(--cm-indigo-700);--accent-national-yellow:var(--cm-jaune-500);
+  /* Bandeau tricolore (signature) */
+  --brand-band:linear-gradient(90deg,var(--cm-vert-700) 0 33.33%,var(--cm-rouge-600) 33.33% 66.66%,var(--cm-jaune-500) 66.66% 100%);
+  --brand-band-h:4px;
+}

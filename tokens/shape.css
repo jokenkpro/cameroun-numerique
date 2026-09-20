@@ -1,0 +1,11 @@
+:root{
+  /* Angles droits par défaut (institution, sobriété). Le rond est réservé aux pastilles et aux tags. */
+  --radius-none:0;--radius-xs:2px;--radius-sm:4px;--radius-md:6px;--radius-lg:10px;--radius-full:9999px;
+  --border-w:1px;--border-w-strong:2px;--border-w-accent:4px;
+  --shadow-xs:0 1px 2px rgba(21,17,14,0.06);
+  --shadow-sm:0 1px 3px rgba(21,17,14,0.08),0 1px 2px rgba(21,17,14,0.04);
+  --shadow-md:0 4px 12px rgba(21,17,14,0.10),0 2px 4px rgba(21,17,14,0.06);
+  --shadow-lg:0 12px 32px rgba(21,17,14,0.14),0 4px 8px rgba(21,17,14,0.06);
+  --shadow-focus:0 0 0 2px var(--cm-blanc),0 0 0 4px var(--cm-indigo-600);
+  --focus-ring:2px solid var(--cm-indigo-600);--focus-offset:2px;
+}

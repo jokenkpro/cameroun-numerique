@@ -1,0 +1,3 @@
+# Dictionnaires FR → EN
+
+`traduction.jsx` traduit à l’exécution les textes trouvés dans `window.DICT` (nœuds texte, placeholder, aria-label, title, alt) quand la langue est EN, et restaure le français au retour. `hub.jsx` : chrome, hub, Identité, comptes. `sites.jsx` : Trésor, Présidence, Sports, interface du musée, données du hub. `comptes.jsx` : 42 institutions, votes, messagerie, coffre, échéances, famille, santé. Les textes rédigés directement avec `tr(fr,en)` (site des ministères, mentions légales, pieds de page) n’ont pas besoin du dictionnaire. Contenu encyclopédique du musée (repères, biographies) : traduction éditoriale à planifier avec le comité scientifique.

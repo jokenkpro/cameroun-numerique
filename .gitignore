@@ -1,0 +1,6 @@
+# Fichiers générés par l'atelier de conception
+_ds_manifest.json
+_adherence.oxlintrc.json
+.DS_Store
+node_modules/
+screenshots/

@@ -1,0 +1,14 @@
+:root{
+  /* — Couleurs nationales (drapeau) — */
+  --cm-vert-950:#04261C;--cm-vert-900:#083A2B;--cm-vert-800:#0B4E3A;--cm-vert-700:#0F6448;--cm-vert-600:#127A5A;--cm-vert-500:#1A9169;--cm-vert-400:#3FAE86;--cm-vert-300:#7DCBAC;--cm-vert-200:#B6E3D0;--cm-vert-100:#DDF3EA;--cm-vert-50:#EEF9F4;
+  --cm-rouge-900:#5C0A11;--cm-rouge-800:#7E0F18;--cm-rouge-700:#A3141F;--cm-rouge-600:#CE1126;--cm-rouge-500:#DC3A4B;--cm-rouge-400:#E8737F;--cm-rouge-300:#F1A3AB;--cm-rouge-200:#F8CDD2;--cm-rouge-100:#FCE6E9;--cm-rouge-50:#FEF3F4;
+  --cm-jaune-900:#5E4600;--cm-jaune-800:#8A6700;--cm-jaune-700:#B98A00;--cm-jaune-600:#E0AB00;--cm-jaune-500:#FCD116;--cm-jaune-400:#FDDC4E;--cm-jaune-300:#FEE785;--cm-jaune-200:#FFF0B3;--cm-jaune-100:#FFF7D6;--cm-jaune-50:#FFFBEB;
+  /* — Couleurs culturelles — */
+  --cm-kola-900:#2E1A10;--cm-kola-800:#43261A;--cm-kola-700:#5A3524;--cm-kola-600:#6B3F2A;--cm-kola-500:#8A5539;--cm-kola-400:#A9755A;--cm-kola-300:#C69C86;--cm-kola-200:#DFC3B4;--cm-kola-100:#F0E1D8;--cm-kola-50:#F8F1EC;
+  --cm-laterite-900:#4A1C10;--cm-laterite-800:#6A2A19;--cm-laterite-700:#8A3822;--cm-laterite-600:#A8452B;--cm-laterite-500:#C25A3E;--cm-laterite-400:#D57F67;--cm-laterite-300:#E4A695;--cm-laterite-200:#F0CBC0;--cm-laterite-100:#F8E4DE;--cm-laterite-50:#FCF2EF;
+  --cm-indigo-900:#0F1F3A;--cm-indigo-800:#162C54;--cm-indigo-700:#1B3A6B;--cm-indigo-600:#254A85;--cm-indigo-500:#345E9F;--cm-indigo-400:#5F82B8;--cm-indigo-300:#8FA8CF;--cm-indigo-200:#BFCDE4;--cm-indigo-100:#E0E7F2;--cm-indigo-50:#F0F4F9;
+  /* — Neutres (gris chauds, teinte terre) — */
+  --cm-ebene:#15110E;
+  --cm-gris-950:#1E1915;--cm-gris-900:#2B241F;--cm-gris-800:#3D342E;--cm-gris-700:#544A42;--cm-gris-600:#6E635A;--cm-gris-500:#8B7F75;--cm-gris-400:#A99E94;--cm-gris-300:#C7BEB5;--cm-gris-200:#DED7D0;--cm-gris-100:#EEEAE5;--cm-gris-50:#F7F4F0;
+  --cm-blanc:#FFFFFF;--cm-papier:#FBF9F6;
+}
