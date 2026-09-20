@@ -1,0 +1,7 @@
+import React from 'react';
+import {Icon} from '../core/Icon.jsx';
+import {inputStyles} from './Input.jsx';
+export function Select({options=[],placeholder,invalid=false,disabled=false,value,onChange,style,...rest}){
+  const [focus,setFocus]=React.useState(false);
+  return <div style={{position:'relative',width:'100%'}}><select disabled={disabled} value={value} onChange={onChange} aria-invalid={invalid||undefined} style={{...inputStyles({invalid,disabled,focus}),appearance:'none',paddingRight:40,cursor:disabled?'not-allowed':'pointer',...style}} onFocus={()=>setFocus(true)} onBlur={()=>setFocus(false)} {...rest}>{placeholder&&<option value="">{placeholder}</option>}{options.map(o=>typeof o==='string'?<option key={o} value={o}>{o}</option>:<option key={o.value} value={o.value}>{o.label}</option>)}</select><Icon name="chevron-down" size={18} style={{position:'absolute',right:12,top:'50%',transform:'translateY(-50%)',pointerEvents:'none',color:'var(--text-body)'}}/></div>;
+}

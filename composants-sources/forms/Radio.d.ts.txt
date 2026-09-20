@@ -1,0 +1,6 @@
+import * as React from 'react';
+export interface RadioOption{value:string;label:React.ReactNode;hint?:React.ReactNode;disabled?:boolean;}
+export interface RadioGroupProps{name:string;options:Array<string|RadioOption>;value?:string;onChange?:(value:string)=>void;legend?:React.ReactNode;hint?:React.ReactNode;disabled?:boolean;inline?:boolean;style?:React.CSSProperties;}
+export declare function RadioGroup(props:RadioGroupProps):JSX.Element;
+export interface RadioProps{name:string;value:string;label:React.ReactNode;hint?:React.ReactNode;checked?:boolean;disabled?:boolean;onChange?:()=>void;}
+export declare function Radio(props:RadioProps):JSX.Element;

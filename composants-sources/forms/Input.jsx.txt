@@ -1,0 +1,14 @@
+import React from 'react';
+import {Icon} from '../core/Icon.jsx';
+export function inputStyles({invalid,disabled,focus,size='md'}){
+  return{width:'100%',boxSizing:'border-box',height:size==='lg'?'var(--control-h-lg)':size==='sm'?'var(--control-h-sm)':'var(--control-h-md)',padding:'0 var(--space-3)',font:'var(--type-body)',color:disabled?'var(--text-disabled)':'var(--text-body)',background:disabled?'var(--surface-sunken)':'var(--surface-card)',border:'2px solid',borderColor:invalid?'var(--status-error)':'var(--border-input)',borderRadius:'var(--radius-sm)',outline:'none',boxShadow:focus?'var(--shadow-focus)':'none',transition:'box-shadow var(--duration-fast)'};
+}
+export function Input({iconLeft,invalid=false,disabled=false,size='md',type='text',style,...rest}){
+  const [focus,setFocus]=React.useState(false);
+  const s={...inputStyles({invalid,disabled,focus,size}),...(iconLeft?{paddingLeft:40}:{}),...style};
+  return <div style={{position:'relative',width:'100%'}}>{iconLeft&&<Icon name={iconLeft} size={18} style={{position:'absolute',left:12,top:'50%',transform:'translateY(-50%)',color:'var(--text-muted)'}}/>}<input type={type} disabled={disabled} aria-invalid={invalid||undefined} style={s} onFocus={()=>setFocus(true)} onBlur={()=>setFocus(false)} {...rest}/></div>;
+}
+export function Textarea({invalid=false,disabled=false,rows=4,style,...rest}){
+  const [focus,setFocus]=React.useState(false);
+  return <textarea rows={rows} disabled={disabled} aria-invalid={invalid||undefined} style={{...inputStyles({invalid,disabled,focus}),height:'auto',padding:'var(--space-2) var(--space-3)',resize:'vertical',...style}} onFocus={()=>setFocus(true)} onBlur={()=>setFocus(false)} {...rest}/>;
+}

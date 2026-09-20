@@ -1,0 +1,15 @@
+import React from 'react';
+import {IconButton} from '../core/IconButton.jsx';
+export function Dialog({open,onClose,title,children,footer,size='md',inline=false}){
+  React.useEffect(()=>{if(!open||inline)return;const k=e=>{if(e.key==='Escape')onClose&&onClose();};window.addEventListener('keydown',k);return()=>window.removeEventListener('keydown',k);},[open,onClose,inline]);
+  if(!open)return null;
+  const W={sm:420,md:560,lg:760}[size];
+  const panel=<div role="dialog" aria-modal={!inline} aria-labelledby="dlg-title" style={{background:'var(--surface-card)',width:'min('+W+'px, calc(100% - 32px))',boxShadow:'var(--shadow-lg)',display:'flex',flexDirection:'column',maxHeight:inline?'none':'calc(100vh - 48px)'}}>
+    <div style={{height:'var(--brand-band-h)',background:'var(--brand-band)'}}/>
+    <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',gap:16,padding:'var(--space-6) var(--space-6) 0'}}><h2 id="dlg-title" style={{font:'var(--type-h4)',margin:0}}>{title}</h2>{onClose&&<IconButton icon="x" label="Fermer" onClick={onClose} style={{margin:'-8px -8px 0 0'}}/>}</div>
+    <div style={{padding:'var(--space-4) var(--space-6) var(--space-6)',overflow:'auto',font:'var(--type-body)'}}>{children}</div>
+    {footer&&<div style={{display:'flex',justifyContent:'flex-end',gap:12,padding:'var(--space-4) var(--space-6)',borderTop:'1px solid var(--border-default)',background:'var(--surface-muted)'}}>{footer}</div>}
+  </div>;
+  if(inline)return panel;
+  return <div onClick={e=>{if(e.target===e.currentTarget&&onClose)onClose();}} style={{position:'fixed',inset:0,zIndex:50,background:'var(--surface-overlay)',display:'flex',alignItems:'center',justifyContent:'center',padding:24}}>{panel}</div>;
+}

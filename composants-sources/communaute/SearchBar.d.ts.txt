@@ -1,0 +1,3 @@
+import * as React from 'react';
+export interface SearchBarProps{value?:string;onChange?:(v:string)=>void;onSubmit?:(v:string)=>void;placeholder?:string;/** aria-label of the input */label?:string;buttonLabel?:string;/** inverse = jaune (sur fond vert/ébène), primary = vert */tone?:'inverse'|'primary';size?:'md'|'lg';style?:React.CSSProperties;}
+export declare function SearchBar(props:SearchBarProps):JSX.Element;

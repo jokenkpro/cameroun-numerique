@@ -1,0 +1,26 @@
+import React from 'react';
+import {Icon} from './Icon.jsx';
+const H={sm:'var(--control-h-sm)',md:'var(--control-h-md)',lg:'var(--control-h-lg)'};
+const PX={sm:'0 var(--space-3)',md:'0 var(--space-4)',lg:'0 var(--space-6)'};
+const FS={sm:'var(--text-sm)',md:'var(--text-md)',lg:'var(--text-lg)'};
+export function buttonStyles(variant,size,state,disabled){
+  const base={display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'var(--space-2)',height:H[size],padding:PX[size],fontFamily:'var(--font-sans)',fontWeight:600,fontSize:FS[size],lineHeight:1,border:'2px solid transparent',borderRadius:'var(--radius-none)',cursor:disabled?'not-allowed':'pointer',textDecoration:'none',whiteSpace:'nowrap',transition:'var(--transition-color)',userSelect:'none'};
+  if(disabled)return{...base,background:variant==='tertiary'?'transparent':'var(--action-disabled-bg)',color:'var(--action-disabled-text)',borderColor:variant==='secondary'?'var(--action-disabled-bg)':'transparent'};
+  const v={
+    primary:{background:state==='active'?'var(--action-primary-active)':state==='hover'?'var(--action-primary-hover)':'var(--action-primary)',color:'var(--action-primary-text)',borderColor:'transparent'},
+    secondary:{background:state==='active'?'var(--action-secondary-active)':state==='hover'?'var(--action-secondary-hover)':'transparent',color:'var(--action-secondary-text)',borderColor:'var(--action-secondary-border)'},
+    tertiary:{background:state==='hover'||state==='active'?'var(--action-tertiary-hover)':'transparent',color:'var(--action-tertiary-text)',borderColor:'transparent',textDecoration:state==='hover'?'underline':'none',textUnderlineOffset:'0.2em'},
+    danger:{background:state==='hover'||state==='active'?'var(--action-danger-hover)':'var(--action-danger)',color:'var(--action-danger-text)',borderColor:'transparent'},
+    inverse:{background:state==='hover'||state==='active'?'var(--cm-jaune-400)':'var(--cm-jaune-500)',color:'var(--cm-ebene)',borderColor:'transparent'},
+  }[variant]||{};
+  return{...base,...v};
+}
+export function Button({variant='primary',size='md',iconLeft,iconRight,disabled=false,fullWidth=false,href,type='button',children,style,onClick,...rest}){
+  const [state,setState]=React.useState('idle');
+  const s={...buttonStyles(variant,size,state,disabled),...(fullWidth?{width:'100%'}:{}),...style};
+  const iconSize=size==='sm'?16:size==='lg'?22:18;
+  const inner=<>{iconLeft&&<Icon name={iconLeft} size={iconSize}/>}{children}{iconRight&&<Icon name={iconRight} size={iconSize}/>}</>;
+  const handlers={onMouseEnter:()=>setState('hover'),onMouseLeave:()=>setState('idle'),onMouseDown:()=>setState('active'),onMouseUp:()=>setState('hover')};
+  if(href&&!disabled)return <a href={href} style={s} onClick={onClick} {...handlers} {...rest}>{inner}</a>;
+  return <button type={type} disabled={disabled} style={s} onClick={onClick} {...handlers} {...rest}>{inner}</button>;
+}

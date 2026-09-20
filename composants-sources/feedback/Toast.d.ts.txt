@@ -1,0 +1,5 @@
+import * as React from 'react';
+export interface ToastProps{status?:'success'|'error'|'warning'|'info';title?:React.ReactNode;children?:React.ReactNode;action?:React.ReactNode;onClose?:()=>void;style?:React.CSSProperties;}
+export declare function Toast(props:ToastProps):JSX.Element;
+export interface ToastStackProps{children?:React.ReactNode;position?:'bottom-right'|'bottom-left'|'top-right';}
+export declare function ToastStack(props:ToastStackProps):JSX.Element;

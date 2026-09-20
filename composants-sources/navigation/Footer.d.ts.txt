@@ -1,0 +1,5 @@
+import * as React from 'react';
+export interface FooterLink{label:React.ReactNode;href?:string;onClick?:(e:React.MouseEvent)=>void;external?:boolean;}
+export interface FooterColumn{title:React.ReactNode;links:FooterLink[];}
+export interface FooterProps{serviceName?:string;description?:React.ReactNode;columns?:FooterColumn[];/** Ordered legal links: Accessibility, Legal notice, Personal data, Cookies, Open licence, Sitemap, Changelog */legal?:FooterLink[];lang?:'FR'|'EN';/** Design-language version label, e.g. "Langage v2.1 · sept. 2026" */version?:string;contact?:Array<{icon?:string;label:React.ReactNode;href?:string}>;onTop?:()=>void;style?:React.CSSProperties;}
+export declare function Footer(props:FooterProps):JSX.Element;

@@ -1,0 +1,11 @@
+import React from 'react';
+import {Icon} from '../core/Icon.jsx';
+/** Barre de recherche principale (hero) : champ 48px sans bord + bouton jaune ou vert. */
+export function SearchBar({value,onChange,onSubmit,placeholder='Que souhaitez-vous faire ?',label='Rechercher',buttonLabel='Rechercher',tone='inverse',size='lg',style}){
+  const h=size==='lg'?'var(--control-h-lg)':'var(--control-h-md)';
+  const bg=tone==='inverse'?'var(--cm-jaune-500)':'var(--action-primary)';const fg=tone==='inverse'?'var(--cm-ebene)':'#fff';
+  return <form role="search" onSubmit={e=>{e.preventDefault();onSubmit&&onSubmit(value);}} style={{display:'flex',fontFamily:'var(--font-sans)',...style}}>
+    <input value={value} onChange={e=>onChange&&onChange(e.target.value)} aria-label={label} placeholder={placeholder} style={{flex:1,minWidth:0,height:h,border:'2px solid var(--border-input)',borderRight:0,padding:'0 16px',font:'var(--type-body)',fontSize:size==='lg'?'var(--text-lg)':'var(--text-md)',color:'var(--text-body)',background:'var(--surface-card)',outline:'none',boxSizing:'border-box'}}/>
+    <button type="submit" style={{all:'unset',boxSizing:'border-box',cursor:'pointer',height:h,padding:'0 20px',background:bg,color:fg,display:'inline-flex',alignItems:'center',gap:8,font:'var(--type-label)',fontWeight:600,fontSize:size==='lg'?'var(--text-md)':'var(--text-sm)'}}><Icon name="search" size={18}/>{buttonLabel}</button>
+  </form>;
+}

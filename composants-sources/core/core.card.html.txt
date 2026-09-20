@@ -1,0 +1,14 @@
+<!-- @dsCard group="Components" viewport="700x560" name="Core — Boutons, badges, tags, cartes" subtitle="Button ×5 variantes ×3 tailles, IconButton, Badge, Tag, Card" -->
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css"><script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script><script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script><script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script><script src="../../_ds_bundle.js"></script><style>body{margin:0;padding:16px;background:var(--surface-card)}.grid{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.col{display:flex;flex-direction:column;gap:12px}</style></head><body><div id="root"></div><script type="text/babel">const {Button,IconButton,Badge,Tag,Card,Icon} = window.SystMeDeDesignDeLTatDuCameroun_f51bf6;
+
+function App(){const [sel,setSel]=React.useState('Yaoundé');return <div className="col">
+<div className="grid"><Button iconRight="arrow-right">Commencer la démarche</Button><Button variant="secondary">Enregistrer</Button><Button variant="tertiary" iconLeft="download">Télécharger</Button><Button variant="danger">Supprimer</Button><span style={{background:'var(--surface-inverse)',padding:6,display:'inline-flex'}}><Button variant="inverse">Se connecter</Button></span><Button disabled>Désactivé</Button></div>
+<div className="grid"><Button size="sm">Petit</Button><Button size="md">Moyen</Button><Button size="lg">Grand</Button><IconButton icon="search" label="Rechercher" variant="primary"/><IconButton icon="menu" label="Menu"/><IconButton icon="x" label="Fermer" variant="secondary" size="sm"/></div>
+<div className="grid"><Badge>Brouillon</Badge><Badge status="info" dot>En cours</Badge><Badge status="success" dot>Validé</Badge><Badge status="warning">À compléter</Badge><Badge status="error">Rejeté</Badge><Badge status="new">Nouveau</Badge><Badge status="brand" size="sm">Officiel</Badge></div>
+<div className="grid">{['Yaoundé','Douala','Garoua','Bafoussam'].map(v=><Tag key={v} selected={sel===v} onClick={()=>setSel(v)}>{v}</Tag>)}<Tag onRemove={()=>{}}>Passeport</Tag><Tag size="sm">État civil</Tag></div>
+<div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:12}}>
+<Card accent href="#" title="Demander un acte de naissance" description="Copie intégrale ou extrait, retrait en mairie." meta="Délai moyen : 5 jours ouvrés"/>
+<Card variant="muted" title="Où en est mon dossier ?" description="Suivez le traitement avec votre numéro de dossier." badge={<Badge status="info" dot>Service</Badge>}/>
+<Card variant="inverse" href="#" title="Mon Compte Citoyen" description="Un identifiant unique pour toutes vos démarches." meta="Gratuit · FR / EN"/>
+</div></div>;}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);</script></body></html>

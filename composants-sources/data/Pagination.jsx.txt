@@ -1,0 +1,11 @@
+import React from 'react';
+import {Icon} from '../core/Icon.jsx';
+export function Pagination({page=1,pages=1,onChange,style}){
+  const list=[];for(let p=1;p<=pages;p++){if(p===1||p===pages||Math.abs(p-page)<=1)list.push(p);else if(list[list.length-1]!=='…')list.push('…');}
+  const b=(active,dis)=>({all:'unset',boxSizing:'border-box',minWidth:40,height:40,padding:'0 10px',display:'inline-flex',alignItems:'center',justifyContent:'center',cursor:dis?'not-allowed':'pointer',font:'var(--type-label)',fontWeight:600,color:dis?'var(--text-disabled)':active?'#fff':'var(--text-body)',background:active?'var(--cm-vert-800)':'transparent',border:'1px solid '+(active?'var(--cm-vert-800)':'var(--border-default)')});
+  return <nav aria-label="Pagination" style={{display:'flex',gap:6,fontFamily:'var(--font-sans)',...style}}>
+    <button type="button" disabled={page<=1} onClick={()=>onChange&&onChange(page-1)} aria-label="Page précédente" style={b(false,page<=1)}><Icon name="chevron-left" size={16}/></button>
+    {list.map((p,i)=>p==='…'?<span key={'e'+i} style={{...b(false,true),border:0}}>…</span>:<button key={p} type="button" aria-current={p===page?'page':undefined} onClick={()=>onChange&&onChange(p)} style={b(p===page,false)}>{p}</button>)}
+    <button type="button" disabled={page>=pages} onClick={()=>onChange&&onChange(page+1)} aria-label="Page suivante" style={b(false,page>=pages)}><Icon name="chevron-right" size={16}/></button>
+  </nav>;
+}

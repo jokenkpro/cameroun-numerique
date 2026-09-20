@@ -1,0 +1,10 @@
+import React from 'react';
+/** Chiffre clé : filet supérieur 3px, valeur en Anybody condensé. */
+export function Stat({value,label,detail,accent='laterite',size='md',style}){
+  const c={laterite:'var(--accent-laterite)',vert:'var(--cm-vert-800)',indigo:'var(--accent-indigo)',kola:'var(--accent-kola)',neutre:'var(--text-heading)'}[accent]||accent;
+  return <div style={{borderTop:'3px solid '+c,paddingTop:12,fontFamily:'var(--font-sans)',minWidth:0,...style}}>
+    <div style={{fontFamily:'var(--font-display)',fontWeight:800,fontSize:size==='lg'?'var(--text-6xl)':size==='sm'?'var(--text-3xl)':'var(--text-5xl)',lineHeight:1,color:c,fontStretch:'80%',letterSpacing:'-0.02em',fontVariantNumeric:'tabular-nums'}}>{value}</div>
+    <div style={{font:'var(--type-body)',color:'var(--text-body)',marginTop:8,fontWeight:500}}>{label}</div>
+    {detail&&<div style={{font:'var(--type-caption)',fontWeight:400,color:'var(--text-muted)',marginTop:2}}>{detail}</div>}
+  </div>;
+}

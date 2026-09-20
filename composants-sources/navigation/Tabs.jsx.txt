@@ -1,0 +1,5 @@
+import React from 'react';
+export function Tabs({items=[],value,onChange,style}){
+  const [hover,setHover]=React.useState(null);
+  return <div role="tablist" style={{display:'flex',gap:0,borderBottom:'1px solid var(--border-default)',overflowX:'auto',...style}}>{items.map(it=>{const active=it.value===value;return <button key={it.value} role="tab" type="button" aria-selected={active} onClick={()=>onChange&&onChange(it.value)} onMouseEnter={()=>setHover(it.value)} onMouseLeave={()=>setHover(null)} style={{all:'unset',cursor:'pointer',padding:'12px 16px',font:'var(--type-label)',fontWeight:600,color:active?'var(--cm-vert-800)':'var(--text-muted)',background:hover===it.value&&!active?'var(--surface-muted)':'transparent',borderBottom:'3px solid',borderColor:active?'var(--cm-vert-800)':'transparent',marginBottom:-1,whiteSpace:'nowrap',display:'inline-flex',gap:8,alignItems:'center',transition:'var(--transition-color)'}}>{it.label}{it.count!=null&&<span style={{font:'var(--type-caption)',background:active?'var(--cm-vert-100)':'var(--surface-sunken)',color:active?'var(--cm-vert-900)':'var(--text-muted)',padding:'2px 6px'}}>{it.count}</span>}</button>;})}</div>;
+}

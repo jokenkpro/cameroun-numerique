@@ -1,0 +1,18 @@
+<!-- @dsCard group="Components" viewport="700x560" name="Retours — Alertes, toasts, infobulles, dialogue" subtitle="Alert ×4 statuts, Toast, Tooltip, Dialog (inline)" -->
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css"><script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script><script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script><script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script><script src="../../_ds_bundle.js"></script><style>body{margin:0;padding:16px;background:var(--surface-card)}.grid{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.col{display:flex;flex-direction:column;gap:12px}</style></head><body><div id="root"></div><script type="text/babel">const {Alert,Toast,Tooltip,Dialog,Button,IconButton} = window.SystMeDeDesignDeLTatDuCameroun_f51bf6;
+
+function App(){return <div className="col">
+<div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+<Alert status="success" title="Dossier transmis">Vous recevrez un SMS dès la validation.</Alert>
+<Alert status="error" title="Paiement refusé" onClose={()=>{}}>Vérifiez le solde de votre compte Mobile Money.</Alert>
+<Alert status="warning" size="sm">Le service sera indisponible dimanche de 02h à 05h.</Alert>
+<Alert status="info" size="sm">Ce formulaire est aussi disponible en anglais.</Alert>
+</div>
+<div className="grid" style={{alignItems:'flex-start'}}>
+<Toast status="success" title="Dossier envoyé" onClose={()=>{}} action={<Button variant="inverse" size="sm">Voir le dossier</Button>}>N° CM-2026-00417-YDE</Toast>
+<Toast status="error" title="Connexion perdue" onClose={()=>{}}>Vos modifications sont enregistrées localement.</Toast>
+<div style={{padding:'24px 8px 8px'}}><Tooltip content="Télécharger le récépissé" placement="bottom"><IconButton icon="download" label="Télécharger" variant="secondary"/></Tooltip></div>
+</div>
+<Dialog open inline title="Confirmer l’envoi du dossier" onClose={()=>{}} footer={<><Button variant="secondary">Annuler</Button><Button iconRight="send">Envoyer</Button></>}>Votre demande sera transmise à la mairie de Yaoundé 3e. Vous ne pourrez plus la modifier après envoi.</Dialog>
+</div>;}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);</script></body></html>

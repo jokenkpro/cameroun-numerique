@@ -1,0 +1,19 @@
+import React from 'react';
+import {Icon} from '../core/Icon.jsx';
+import {Badge} from '../core/Badge.jsx';
+/** Proposition soumise au vote citoyen (évolution du langage de design). */
+export function VoteCard({title,description,author,category,votesFor=0,votesAgainst=0,userVote=null,onVote,status='ouvert',closesAt,image,style}){
+  const total=votesFor+votesAgainst||1;const pct=Math.round(votesFor/total*100);
+  const vb=(kind)=>{const on=userVote===kind;const c=kind==='for'?'var(--cm-vert-800)':'var(--cm-rouge-700)';return{all:'unset',boxSizing:'border-box',cursor:status==='ouvert'?'pointer':'not-allowed',display:'inline-flex',alignItems:'center',gap:8,height:40,padding:'0 14px',font:'var(--type-label)',fontWeight:600,color:on?'#fff':c,background:on?c:'transparent',border:'2px solid '+c,opacity:status==='ouvert'?1:.5};};
+  return <article style={{background:'var(--surface-card)',border:'1px solid var(--border-default)',borderTop:'4px solid var(--accent-indigo)',fontFamily:'var(--font-sans)',display:'flex',flexDirection:'column',...style}}>
+    {image&&<div style={{aspectRatio:'16/7',background:'var(--cm-gris-100) url('+image+') center/cover'}}/>}
+    <div style={{padding:'var(--space-5)',display:'flex',flexDirection:'column',gap:12,flex:1}}>
+      <div style={{display:'flex',gap:8,alignItems:'center',flexWrap:'wrap'}}>{category&&<Badge status="info">{category}</Badge>}<Badge status={status==='ouvert'?'success':status==='adopté'?'brand':'neutral'} dot>{status==='ouvert'?'Vote ouvert':status==='adopté'?'Adopté':'Clos'}</Badge>{closesAt&&<span style={{font:'var(--type-caption)',color:'var(--text-subtle)',marginLeft:'auto'}}>Clôture {closesAt}</span>}</div>
+      <h3 style={{font:'var(--type-h5)',color:'var(--text-heading)',margin:0}}>{title}</h3>
+      {description&&<p style={{font:'var(--type-body-sm)',color:'var(--text-muted)',margin:0}}>{description}</p>}
+      {author&&<div style={{font:'var(--type-caption)',color:'var(--text-subtle)',fontWeight:400}}>Proposé par {author}</div>}
+      <div><div style={{display:'flex',justifyContent:'space-between',font:'var(--type-caption)',color:'var(--text-muted)',marginBottom:6}}><span><b style={{color:'var(--cm-vert-800)'}}>{pct} %</b> pour · {votesFor+votesAgainst} votes</span><span>{100-pct} % contre</span></div><div role="meter" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label="Part de votes favorables" style={{height:8,background:'var(--cm-rouge-200)',display:'flex'}}><span style={{width:pct+'%',background:'var(--cm-vert-700)'}}/></div></div>
+      <div style={{display:'flex',gap:8,marginTop:'auto'}}><button type="button" style={vb('for')} onClick={()=>status==='ouvert'&&onVote&&onVote('for')} aria-pressed={userVote==='for'}><Icon name="thumbs-up" size={16}/>Pour</button><button type="button" style={vb('against')} onClick={()=>status==='ouvert'&&onVote&&onVote('against')} aria-pressed={userVote==='against'}><Icon name="thumbs-down" size={16}/>Contre</button></div>
+    </div>
+  </article>;
+}

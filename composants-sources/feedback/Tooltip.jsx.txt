@@ -1,0 +1,10 @@
+import React from 'react';
+export function Tooltip({content,children,placement='top'}){
+  const [open,setOpen]=React.useState(false);
+  const id=React.useId();
+  const pos={top:{bottom:'calc(100% + 8px)',left:'50%',transform:'translateX(-50%)'},bottom:{top:'calc(100% + 8px)',left:'50%',transform:'translateX(-50%)'},right:{left:'calc(100% + 8px)',top:'50%',transform:'translateY(-50%)'},left:{right:'calc(100% + 8px)',top:'50%',transform:'translateY(-50%)'}}[placement];
+  return <span style={{position:'relative',display:'inline-flex'}} onMouseEnter={()=>setOpen(true)} onMouseLeave={()=>setOpen(false)} onFocus={()=>setOpen(true)} onBlur={()=>setOpen(false)} aria-describedby={id}>
+    {children}
+    <span role="tooltip" id={id} style={{position:'absolute',zIndex:50,pointerEvents:'none',opacity:open?1:0,transition:'opacity var(--duration-fast)',background:'var(--surface-inverse)',color:'var(--text-inverse)',font:'var(--type-body-sm)',padding:'6px 10px',whiteSpace:'nowrap',boxShadow:'var(--shadow-md)',...pos}}>{content}</span>
+  </span>;
+}

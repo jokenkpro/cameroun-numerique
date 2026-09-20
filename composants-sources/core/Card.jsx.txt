@@ -1,0 +1,18 @@
+import React from 'react';
+import {Icon} from './Icon.jsx';
+export function Card({title,description,meta,href,onClick,image,badge,children,variant='default',accent=false,style}){
+  const [hover,setHover]=React.useState(false);
+  const interactive=!!(href||onClick);
+  const El=href?'a':'div';
+  const wrap={display:'flex',flexDirection:'column',background:variant==='muted'?'var(--surface-muted)':variant==='inverse'?'var(--surface-inverse)':'var(--surface-card)',color:variant==='inverse'?'var(--text-inverse)':'var(--text-body)',border:variant==='inverse'?'none':'1px solid var(--border-default)',borderTop:accent?'var(--border-w-accent) solid var(--cm-vert-800)':undefined,boxShadow:hover&&interactive?'var(--shadow-md)':'none',textDecoration:'none',cursor:interactive?'pointer':'default',transition:'box-shadow var(--duration-base) var(--ease-out)',overflow:'hidden',...style};
+  return <El href={href} onClick={onClick} style={wrap} onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)}>
+    {image&&<div style={{aspectRatio:'16/9',background:'var(--surface-sunken)',backgroundImage:typeof image==='string'?'url('+image+')':undefined,backgroundSize:'cover',backgroundPosition:'center'}}/>}
+    <div style={{padding:'var(--space-6)',display:'flex',flexDirection:'column',gap:'var(--space-3)',flex:1}}>
+      {badge&&<div>{badge}</div>}
+      {title&&<div style={{font:'var(--type-h5)',color:variant==='inverse'?'var(--cm-blanc)':'var(--text-heading)',display:'flex',alignItems:'flex-start',justifyContent:'space-between',gap:12}}><span style={{textDecoration:hover&&interactive?'underline':'none',textUnderlineOffset:'0.15em'}}>{title}</span>{interactive&&<Icon name="arrow-right" size={20} style={{marginTop:2,color:variant==='inverse'?'var(--cm-jaune-500)':'var(--cm-vert-800)'}}/>}</div>}
+      {description&&<p style={{font:'var(--type-body-sm)',color:variant==='inverse'?'var(--cm-gris-300)':'var(--text-muted)',margin:0}}>{description}</p>}
+      {children}
+      {meta&&<div style={{marginTop:'auto',font:'var(--type-caption)',color:variant==='inverse'?'var(--cm-gris-400)':'var(--text-subtle)'}}>{meta}</div>}
+    </div>
+  </El>;
+}

@@ -1,0 +1,3 @@
+import * as React from 'react';
+export interface VoteCardProps{title:React.ReactNode;description?:React.ReactNode;author?:React.ReactNode;category?:React.ReactNode;votesFor?:number;votesAgainst?:number;userVote?:'for'|'against'|null;onVote?:(vote:'for'|'against')=>void;status?:'ouvert'|'clos'|'adopté';closesAt?:React.ReactNode;image?:string;style?:React.CSSProperties;}
+export declare function VoteCard(props:VoteCardProps):JSX.Element;

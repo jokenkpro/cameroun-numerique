@@ -1,0 +1,16 @@
+import React from 'react';
+import {Icon} from '../core/Icon.jsx';
+import {IconButton} from '../core/IconButton.jsx';
+const ICON={success:'circle-check',error:'circle-alert',warning:'triangle-alert',info:'info'};
+const COL={success:'var(--cm-vert-400)',error:'var(--cm-rouge-400)',warning:'var(--cm-jaune-500)',info:'var(--cm-indigo-300)'};
+export function Toast({status='info',title,children,action,onClose,style}){
+  return <div role="status" style={{display:'flex',gap:12,alignItems:'flex-start',background:'var(--surface-inverse)',color:'var(--text-inverse)',padding:'12px 12px 12px 16px',width:'min(420px,100%)',boxSizing:'border-box',boxShadow:'var(--shadow-lg)',borderLeft:'4px solid '+COL[status],...style}}>
+    <Icon name={ICON[status]} size={20} style={{color:COL[status],marginTop:1}}/>
+    <div style={{flex:1,display:'flex',flexDirection:'column',gap:2,minWidth:0}}>{title&&<div style={{font:'var(--type-label)',fontWeight:600,color:'var(--cm-blanc)'}}>{title}</div>}{children&&<div style={{font:'var(--type-body-sm)',color:'var(--cm-gris-300)'}}>{children}</div>}{action&&<div style={{marginTop:6}}>{action}</div>}</div>
+    {onClose&&<IconButton icon="x" label="Fermer" size="sm" onClick={onClose} style={{color:'var(--cm-gris-300)',margin:-4}}/>}
+  </div>;
+}
+export function ToastStack({children,position='bottom-right'}){
+  const pos={'bottom-right':{bottom:24,right:24},'bottom-left':{bottom:24,left:24},'top-right':{top:24,right:24}}[position];
+  return <div style={{position:'fixed',zIndex:60,display:'flex',flexDirection:'column',gap:8,...pos}}>{children}</div>;
+}

@@ -1,0 +1,5 @@
+import * as React from 'react';
+export interface GovSite{id:string;label:React.ReactNode;hint?:React.ReactNode;/** Panel column: "Hub", "Sites de l’État", "Services transverses"… */group?:string;/** Lucide icon name */icon?:string;}
+export interface GovSuggestion{group:string;label:React.ReactNode;hint?:React.ReactNode;right?:React.ReactNode;href?:string;onSelect?:()=>void;icon?:string;}
+export interface GovBarProps{hubLabel?:string;hubHref?:string;/** id of the current site in `sites` */ministry?:string;sites?:GovSite[];onSiteChange?:(id:string)=>void;/** Full-results fallback (Enter with no suggestion, "Tous les résultats") */onSearch?:(q:string)=>void;/** Typeahead provider: returns grouped suggestions for a query (≥ 2 chars) */suggest?:(q:string)=>GovSuggestion[];searchPlaceholder?:string;user?:{name:string;initials:string};onLogin?:()=>void;onAccessibility?:()=>void;lang?:'FR'|'EN';onLangChange?:(l:'FR'|'EN')=>void;style?:React.CSSProperties;}
+export declare function GovBar(props:GovBarProps):JSX.Element;

@@ -1,0 +1,12 @@
+import React from 'react';
+/** Tableau de données administratives : en-tête ébène sur gris-50, zébrage papier, alignement numérique à droite. */
+export function Table({columns=[],rows=[],caption,dense=false,striped=true,rowKey,style}){
+  const pad=dense?'8px 12px':'12px 16px';
+  return <div style={{overflowX:'auto',border:'1px solid var(--border-default)',borderRadius:'var(--radius-sm)',background:'var(--surface-card)',...style}}>
+    <table style={{width:'100%',borderCollapse:'collapse',font:'var(--type-body-sm)',color:'var(--text-body)'}}>
+      {caption&&<caption style={{textAlign:'left',padding:pad,font:'var(--type-label)',fontWeight:600,color:'var(--text-heading)',borderBottom:'1px solid var(--border-default)'}}>{caption}</caption>}
+      <thead><tr>{columns.map(c=><th key={c.key} scope="col" style={{textAlign:c.align||'left',padding:pad,background:'var(--surface-muted)',font:'var(--type-overline)',letterSpacing:'var(--tracking-wide)',textTransform:'uppercase',color:'var(--text-muted)',borderBottom:'2px solid var(--border-default)',whiteSpace:'nowrap'}}>{c.label}</th>)}</tr></thead>
+      <tbody>{rows.map((r,i)=><tr key={rowKey?rowKey(r,i):i} style={{background:striped&&i%2?'var(--cm-papier)':'transparent'}}>{columns.map(c=><td key={c.key} style={{padding:pad,textAlign:c.align||'left',borderBottom:'1px solid var(--border-default)',fontFamily:c.mono?'var(--font-mono)':undefined,fontWeight:c.strong?600:400,verticalAlign:'middle'}}>{c.render?c.render(r[c.key],r):r[c.key]}</td>)}</tr>)}</tbody>
+    </table>
+  </div>;
+}

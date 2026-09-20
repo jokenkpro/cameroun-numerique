@@ -1,0 +1,10 @@
+import React from 'react';
+import {Icon} from '../core/Icon.jsx';
+export function Accordion({items=[],defaultOpen=[],multiple=false,style}){
+  const [open,setOpen]=React.useState(defaultOpen);
+  const toggle=id=>setOpen(o=>o.includes(id)?o.filter(x=>x!==id):multiple?[...o,id]:[id]);
+  return <div style={{borderTop:'1px solid var(--border-default)',...style}}>{items.map((it,i)=>{const id=it.id||String(i);const isOpen=open.includes(id);return <div key={id} style={{borderBottom:'1px solid var(--border-default)'}}>
+    <button type="button" aria-expanded={isOpen} onClick={()=>toggle(id)} style={{all:'unset',display:'flex',width:'100%',boxSizing:'border-box',alignItems:'center',justifyContent:'space-between',gap:16,padding:'16px 4px',cursor:'pointer',font:'var(--type-h6)',color:isOpen?'var(--cm-vert-800)':'var(--text-heading)'}}><span>{it.title}</span><Icon name="chevron-down" size={20} style={{transition:'transform var(--duration-base) var(--ease-out)',transform:isOpen?'rotate(180deg)':'none',color:'var(--cm-vert-800)'}}/></button>
+    {isOpen&&<div style={{padding:'0 4px 20px',font:'var(--type-body)',color:'var(--text-body)',maxWidth:'var(--measure)'}}>{it.content}</div>}
+  </div>;})}</div>;
+}

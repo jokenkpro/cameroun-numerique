@@ -1,0 +1,29 @@
+import React from 'react';
+import {Icon} from '../core/Icon.jsx';
+/** Pied de page commun. Ne répète pas l'en-tête : aide, réseau, participation, mentions ordonnées, devise discrète en bas.
+ *  legal = liste ordonnée [{label,href}] ; version = étiquette du langage. */
+export function Footer({serviceName='Portail des services publics',description,columns=[],legal=[],lang='FR',version,contact,onTop,style}){
+  const EN=lang==='EN';
+  const devise=EN?['Peace','Work','Fatherland']:['Paix','Travail','Patrie'];const cols=['var(--cm-vert-500)','var(--cm-rouge-500)','var(--cm-jaune-500)'];
+  const link={color:'var(--cm-gris-200)',font:'var(--type-body-sm)',textDecoration:'none',display:'inline-flex',gap:6,alignItems:'center',minHeight:28,lineHeight:1.3};
+  return <footer style={{background:'var(--surface-inverse)',color:'var(--text-inverse)',fontFamily:'var(--font-sans)',...style}}>
+    <div style={{height:'var(--brand-band-h)',background:'var(--brand-band)'}}/>
+    <div style={{maxWidth:'var(--container-lg)',margin:'0 auto',padding:'var(--space-12) var(--gutter) var(--space-10)',boxSizing:'border-box',display:'grid',gridTemplateColumns:'minmax(240px,1.2fr) repeat(auto-fit,minmax(180px,1fr))',gap:'var(--space-10) var(--space-8)',alignItems:'start'}}>
+      <div style={{display:'grid',gap:14,alignContent:'start'}}>
+        <div style={{font:'var(--type-overline)',letterSpacing:'var(--tracking-caps)',textTransform:'uppercase',color:'var(--cm-gris-400)'}}>{EN?'Republic of Cameroon':'République du Cameroun'}</div>
+        <div style={{font:'var(--type-h5)',color:'var(--cm-blanc)'}}>{serviceName}</div>
+        {description&&<p style={{font:'var(--type-body-sm)',color:'var(--cm-gris-300)',maxWidth:'44ch',margin:0}}>{description}</p>}
+        {contact&&<ul style={{listStyle:'none',margin:'4px 0 0',padding:0,display:'grid',gap:8}}>{contact.map((c,i)=><li key={i}><span style={{display:'inline-flex',gap:10,alignItems:'flex-start',font:'var(--type-body-sm)',color:'var(--cm-gris-200)',lineHeight:1.35}}><Icon name={c.icon||'phone'} size={14} color="var(--cm-jaune-500)" style={{marginTop:3,flex:'none'}}/>{c.href?<a href={c.href} style={{color:'inherit'}}>{c.label}</a>:<span>{c.label}</span>}</span></li>)}</ul>}
+      </div>
+      {columns.map((c,i)=><nav key={i} aria-label={typeof c.title==='string'?c.title:undefined} style={{display:'grid',gap:0,alignContent:'start'}}><div style={{font:'var(--type-overline)',letterSpacing:'var(--tracking-caps)',textTransform:'uppercase',color:'var(--cm-jaune-500)',minHeight:28,display:'flex',alignItems:'center',borderBottom:'1px solid var(--cm-gris-800)',marginBottom:10}}>{c.title}</div><ul style={{listStyle:'none',margin:0,padding:0,display:'grid',gap:4}}>{c.links.map((l,j)=><li key={j}><a href={l.href||'#'} onClick={l.onClick} style={link}>{l.label}{l.external&&<Icon name="arrow-up-right" size={12} color="var(--cm-gris-500)"/>}</a></li>)}</ul></nav>)}
+    </div>
+    <div style={{borderTop:'1px solid var(--cm-gris-800)'}}><div style={{maxWidth:'var(--container-lg)',margin:'0 auto',padding:'12px var(--gutter)',boxSizing:'border-box',display:'flex',flexWrap:'wrap',gap:'8px 24px',alignItems:'center',font:'var(--type-caption)',color:'var(--cm-gris-300)'}}>
+      <ol style={{listStyle:'none',margin:0,padding:0,display:'flex',flexWrap:'wrap',gap:'4px 20px',flex:'1 1 auto'}}>{legal.map((l,i)=><li key={i}><a href={l.href||'#'} onClick={l.onClick} style={{color:'inherit',textDecoration:'none',display:'inline-flex',minHeight:32,alignItems:'center'}}>{l.label}</a></li>)}</ol>
+      {onTop&&<button type="button" onClick={onTop} style={{all:'unset',boxSizing:'border-box',cursor:'pointer',display:'inline-flex',gap:6,alignItems:'center',height:32,padding:'0 10px',border:'1px solid var(--cm-gris-700)',color:'var(--cm-gris-200)',font:'var(--type-caption)',fontWeight:600}}><Icon name="arrow-up" size={14}/>{EN?'Back to top':'Haut de page'}</button>}
+    </div></div>
+    <div style={{borderTop:'1px solid var(--cm-gris-800)',background:'var(--cm-gris-900)'}}><div style={{maxWidth:'var(--container-lg)',margin:'0 auto',padding:'12px var(--gutter)',boxSizing:'border-box',display:'flex',flexWrap:'wrap',gap:'6px 24px',alignItems:'center',justifyContent:'space-between',font:'var(--type-caption)',color:'var(--cm-gris-400)'}}>
+      <span aria-label={EN?'Motto: Peace, Work, Fatherland':'Devise : Paix, Travail, Patrie'} style={{display:'inline-flex',gap:10,alignItems:'center',color:'var(--cm-gris-200)',letterSpacing:'0.08em',textTransform:'uppercase',fontWeight:600}}>{devise.map((w,i)=><React.Fragment key={w}>{i>0&&<span aria-hidden="true" style={{color:'var(--cm-gris-600)'}}>–</span>}<span style={{display:'inline-flex',gap:6,alignItems:'center'}}><span aria-hidden="true" style={{width:8,height:8,background:cols[i]}}/>{w}</span></React.Fragment>)}</span>
+      <span style={{display:'inline-flex',gap:16,alignItems:'center',flexWrap:'wrap'}}>{version&&<span style={{fontFamily:'var(--font-mono)'}}>{version}</span>}<span>{EN?'Prototype — Johan Kenneth Nken · CC BY-NC-SA 4.0':'Prototype — Johan Kenneth Nken · CC BY-NC-SA 4.0'}</span></span>
+    </div></div>
+  </footer>;
+}

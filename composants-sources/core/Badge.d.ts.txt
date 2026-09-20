@@ -1,0 +1,3 @@
+import * as React from 'react';
+export interface BadgeProps{status?:'neutral'|'success'|'error'|'warning'|'info'|'new'|'brand';size?:'sm'|'md';dot?:boolean;children?:React.ReactNode;style?:React.CSSProperties;}
+export declare function Badge(props:BadgeProps):JSX.Element;

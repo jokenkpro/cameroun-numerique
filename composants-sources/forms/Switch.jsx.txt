@@ -1,0 +1,8 @@
+import React from 'react';
+export function Switch({checked=false,onChange,label,hint,disabled=false,style}){
+  const id=React.useId();
+  return <label htmlFor={id} style={{display:'flex',gap:12,alignItems:'center',justifyContent:'space-between',cursor:disabled?'not-allowed':'pointer',minHeight:'var(--touch-min)',...style}}>
+    <span style={{display:'flex',flexDirection:'column',gap:2}}><span style={{font:'var(--type-body)',color:disabled?'var(--text-disabled)':'var(--text-body)'}}>{label}</span>{hint&&<span style={{font:'var(--type-body-sm)',color:'var(--text-muted)'}}>{hint}</span>}</span>
+    <span style={{position:'relative',display:'inline-flex',flex:'none'}}><input id={id} role="switch" type="checkbox" checked={checked} disabled={disabled} aria-checked={checked} onChange={e=>onChange&&onChange(e.target.checked)} style={{position:'absolute',inset:0,opacity:0,margin:0,width:'100%',height:'100%',cursor:'inherit'}}/><span aria-hidden="true" style={{width:44,height:24,borderRadius:'var(--radius-full)',background:checked?'var(--cm-vert-800)':'var(--cm-gris-400)',position:'relative',transition:'background-color var(--duration-base) var(--ease-out)',opacity:disabled?0.5:1}}><span style={{position:'absolute',top:2,left:checked?22:2,width:20,height:20,borderRadius:'50%',background:'var(--cm-blanc)',boxShadow:'var(--shadow-sm)',transition:'left var(--duration-base) var(--ease-out)'}}/></span></span>
+  </label>;
+}

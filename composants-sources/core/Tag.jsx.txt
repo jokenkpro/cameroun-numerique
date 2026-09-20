@@ -1,0 +1,10 @@
+import React from 'react';
+import {Icon} from './Icon.jsx';
+export function Tag({children,selected=false,onClick,onRemove,size='md',style}){
+  const [hover,setHover]=React.useState(false);
+  const interactive=!!onClick;
+  const base={display:'inline-flex',alignItems:'center',gap:6,height:size==='sm'?24:32,padding:size==='sm'?'0 10px':'0 12px',borderRadius:'var(--radius-full)',fontFamily:'var(--font-sans)',fontWeight:500,fontSize:size==='sm'?'var(--text-xs)':'var(--text-sm)',lineHeight:1,border:'1px solid',cursor:interactive?'pointer':'default',transition:'var(--transition-color)',whiteSpace:'nowrap',
+    background:selected?'var(--cm-vert-800)':hover&&interactive?'var(--cm-vert-50)':'var(--surface-card)',color:selected?'var(--cm-blanc)':'var(--text-body)',borderColor:selected?'var(--cm-vert-800)':'var(--border-strong)',...style};
+  const El=interactive?'button':'span';
+  return <El type={interactive?'button':undefined} aria-pressed={interactive?selected:undefined} style={base} onClick={onClick} onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)}>{children}{onRemove&&<button type="button" aria-label="Retirer" onClick={e=>{e.stopPropagation();onRemove();}} style={{all:'unset',display:'inline-flex',cursor:'pointer',marginRight:-4}}><Icon name="x" size={14}/></button>}</El>;
+}

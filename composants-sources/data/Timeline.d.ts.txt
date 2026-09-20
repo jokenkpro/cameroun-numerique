@@ -1,0 +1,4 @@
+import * as React from 'react';
+export interface TimelineItem{title:React.ReactNode;description?:React.ReactNode;/** Date or relative marker (J-14, 12 sept.) */when?:React.ReactNode;status?:'done'|'current'|'todo'|'error';}
+export interface TimelineProps{items:TimelineItem[];style?:React.CSSProperties;}
+export declare function Timeline(props:TimelineProps):JSX.Element;

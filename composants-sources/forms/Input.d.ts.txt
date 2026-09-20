@@ -1,0 +1,6 @@
+import * as React from 'react';
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement>{iconLeft?:string;invalid?:boolean;disabled?:boolean;size?:'sm'|'md'|'lg';}
+export declare function Input(props:InputProps):JSX.Element;
+export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement>{invalid?:boolean;disabled?:boolean;rows?:number;}
+export declare function Textarea(props:TextareaProps):JSX.Element;
+export declare function inputStyles(o:{invalid?:boolean;disabled?:boolean;focus?:boolean;size?:string}):React.CSSProperties;

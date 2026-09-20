@@ -1,0 +1,4 @@
+import * as React from 'react';
+export interface HeaderProps{serviceName?:string;tagline?:string;nav?:Array<{value:string;label:React.ReactNode}>;active?:string;onNavigate?:(value:string)=>void;lang?:'FR'|'EN';onLangChange?:(lang:'FR'|'EN')=>void;user?:{name:string;initials:string};onSearch?:(q:string)=>void;compact?:boolean;/** false when a GovBar above already carries the single sign-in entry */showLogin?:boolean;style?:React.CSSProperties;}
+/** Below 820 px the nav collapses into a menu button (44 px targets, Escape closes); brand block and search hide to keep one line. */
+export declare function Header(props:HeaderProps):JSX.Element;

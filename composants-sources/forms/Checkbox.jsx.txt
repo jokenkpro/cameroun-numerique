@@ -1,0 +1,10 @@
+import React from 'react';
+import {Icon} from '../core/Icon.jsx';
+export function Checkbox({checked=false,onChange,label,hint,disabled=false,indeterminate=false,invalid=false,name,value,style}){
+  const id=React.useId();
+  const box={width:24,height:24,flex:'none',display:'inline-flex',alignItems:'center',justifyContent:'center',border:'2px solid',borderColor:invalid?'var(--status-error)':checked||indeterminate?'var(--cm-vert-800)':'var(--border-input)',background:checked||indeterminate?'var(--cm-vert-800)':'var(--surface-card)',borderRadius:'var(--radius-sm)',color:'var(--cm-blanc)',transition:'var(--transition-color)',opacity:disabled?0.5:1};
+  return <label htmlFor={id} style={{display:'flex',gap:12,alignItems:'flex-start',cursor:disabled?'not-allowed':'pointer',minHeight:'var(--touch-min)',padding:'10px 0',...style}}>
+    <span style={{position:'relative',display:'inline-flex'}}><input id={id} type="checkbox" name={name} value={value} checked={checked} disabled={disabled} onChange={e=>onChange&&onChange(e.target.checked)} style={{position:'absolute',inset:0,opacity:0,margin:0,width:'100%',height:'100%',cursor:'inherit'}}/><span aria-hidden="true" style={box}>{indeterminate?<Icon name="minus" size={16} strokeWidth={3}/>:checked?<Icon name="check" size={16} strokeWidth={3}/>:null}</span></span>
+    <span style={{display:'flex',flexDirection:'column',gap:2}}><span style={{font:'var(--type-body)',color:disabled?'var(--text-disabled)':'var(--text-body)',lineHeight:'24px'}}>{label}</span>{hint&&<span style={{font:'var(--type-body-sm)',color:'var(--text-muted)'}}>{hint}</span>}</span>
+  </label>;
+}

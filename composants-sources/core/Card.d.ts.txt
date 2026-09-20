@@ -1,0 +1,3 @@
+import * as React from 'react';
+export interface CardProps{title?:React.ReactNode;description?:React.ReactNode;/** Small footer text (date, ministry, delay) */meta?:React.ReactNode;href?:string;onClick?:()=>void;/** Image URL shown 16:9 above content */image?:string;badge?:React.ReactNode;children?:React.ReactNode;variant?:'default'|'muted'|'inverse';/** 4px green top border */accent?:boolean;style?:React.CSSProperties;}
+export declare function Card(props:CardProps):JSX.Element;

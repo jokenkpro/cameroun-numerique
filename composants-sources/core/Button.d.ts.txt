@@ -1,0 +1,15 @@
+import * as React from 'react';
+export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>,'type'>{
+  /** primary = vert-800 plein; secondary = filet vert; tertiary = texte; danger = rouge-700; inverse = jaune sur fond sombre */
+  variant?:'primary'|'secondary'|'tertiary'|'danger'|'inverse';
+  size?:'sm'|'md'|'lg';
+  /** Lucide icon names */
+  iconLeft?:string;iconRight?:string;
+  disabled?:boolean;fullWidth?:boolean;
+  /** Renders as <a> when set */
+  href?:string;
+  type?:'button'|'submit'|'reset';
+  children?:React.ReactNode;
+}
+export declare function Button(props:ButtonProps):JSX.Element;
+export declare function buttonStyles(variant:string,size:string,state:string,disabled:boolean):React.CSSProperties;

@@ -1,0 +1,11 @@
+import React from 'react';
+import {Icon} from '../core/Icon.jsx';
+import {IconButton} from '../core/IconButton.jsx';
+const ICON={success:'circle-check',error:'circle-alert',warning:'triangle-alert',info:'info'};
+export function Alert({status='info',title,children,onClose,size='md',style}){
+  return <div role={status==='error'?'alert':'status'} style={{display:'flex',gap:12,alignItems:'flex-start',background:'var(--status-'+status+'-bg)',borderLeft:'var(--border-w-accent) solid var(--status-'+status+'-border)',padding:size==='sm'?'10px 12px':'var(--space-4) var(--space-4)',color:'var(--text-body)',...style}}>
+    <Icon name={ICON[status]} size={size==='sm'?18:22} style={{color:'var(--status-'+status+')',marginTop:size==='sm'?1:2}}/>
+    <div style={{flex:1,display:'flex',flexDirection:'column',gap:4,minWidth:0}}>{title&&<div style={{font:size==='sm'?'var(--type-label)':'var(--type-h6)',color:'var(--text-heading)'}}>{title}</div>}{children&&<div style={{font:size==='sm'?'var(--type-body-sm)':'var(--type-body)'}}>{children}</div>}</div>
+    {onClose&&<IconButton icon="x" label="Fermer" size="sm" onClick={onClose} style={{margin:-6}}/>}
+  </div>;
+}

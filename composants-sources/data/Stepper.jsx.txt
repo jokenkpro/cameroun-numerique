@@ -1,0 +1,16 @@
+import React from 'react';
+import {Icon} from '../core/Icon.jsx';
+/** Parcours en étapes (démarche, télédéclaration). current is 1-based. */
+export function Stepper({steps=[],current=1,orientation='horizontal',style}){
+  const horiz=orientation==='horizontal';
+  return <ol aria-label={'Étape '+current+' sur '+steps.length} style={{listStyle:'none',margin:0,padding:0,display:'flex',flexDirection:horiz?'row':'column',gap:horiz?0:'var(--space-4)',fontFamily:'var(--font-sans)',...style}}>
+    {steps.map((s,i)=>{const n=i+1;const done=n<current,active=n===current;const col=done?'var(--cm-vert-800)':active?'var(--cm-vert-800)':'var(--cm-gris-300)';
+      return <li key={i} aria-current={active?'step':undefined} style={{flex:horiz?1:'none',display:'flex',flexDirection:horiz?'column':'row',gap:horiz?10:12,alignItems:horiz?'stretch':'flex-start',minWidth:0}}>
+        <div style={{display:'flex',alignItems:'center',gap:8,flexDirection:horiz?'row':'column'}}>
+          <span style={{width:28,height:28,flex:'none',display:'inline-flex',alignItems:'center',justifyContent:'center',background:done||active?'var(--cm-vert-800)':'var(--surface-card)',color:done||active?'#fff':'var(--text-muted)',border:'2px solid '+col,fontFamily:'var(--font-display)',fontWeight:700,fontSize:13}}>{done?<Icon name="check" size={14} color="#fff"/>:n}</span>
+          {i<steps.length-1&&<span style={{flex:1,height:horiz?2:'auto',width:horiz?'auto':2,minHeight:horiz?0:20,background:done?'var(--cm-vert-800)':'var(--cm-gris-200)'}}/>}
+        </div>
+        <div style={{paddingRight:horiz?12:0,minWidth:0}}><div style={{font:'var(--type-label)',fontWeight:active?700:600,color:active?'var(--text-heading)':done?'var(--text-body)':'var(--text-muted)'}}>{s.label||s}</div>{s.hint&&<div style={{font:'var(--type-caption)',fontWeight:400,color:'var(--text-subtle)',marginTop:2}}>{s.hint}</div>}</div>
+      </li>;})}
+  </ol>;
+}

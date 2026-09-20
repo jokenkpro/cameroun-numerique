@@ -1,0 +1,4 @@
+import * as React from 'react';
+export interface Step{label:React.ReactNode;hint?:React.ReactNode;}
+export interface StepperProps{steps:Array<string|Step>;/** 1-based index of the active step */current?:number;orientation?:'horizontal'|'vertical';style?:React.CSSProperties;}
+export declare function Stepper(props:StepperProps):JSX.Element;

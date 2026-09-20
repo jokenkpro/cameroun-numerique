@@ -1,0 +1,14 @@
+<!-- @dsCard group="Components" viewport="700x520" name="Formulaires" subtitle="Field, Input, Textarea, Select, Checkbox, RadioGroup, Switch — états normal, erreur, désactivé" -->
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css"><script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script><script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script><script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script><script src="../../_ds_bundle.js"></script><style>body{margin:0;padding:16px;background:var(--surface-card)}.grid{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.col{display:flex;flex-direction:column;gap:12px}</style></head><body><div id="root"></div><script type="text/babel">const {Field,Input,Textarea,Select,Checkbox,RadioGroup,Switch} = window.SystMeDeDesignDeLTatDuCameroun_f51bf6;
+
+function App(){const [c,setC]=React.useState(true);const [c2,setC2]=React.useState(false);const [r,setR]=React.useState('extrait');const [s,setS]=React.useState(true);return <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'16px 24px'}}>
+<Field label="Nom de famille" hint="Tel qu’il figure sur votre CNI" required htmlFor="nom"><Input id="nom" placeholder="MBARGA"/></Field>
+<Field label="Numéro CNI" error="Le numéro doit contenir 9 chiffres" htmlFor="cni"><Input id="cni" invalid defaultValue="10844"/></Field>
+<Field label="Adresse e-mail" htmlFor="mail"><Input id="mail" type="email" iconLeft="mail" placeholder="nom@exemple.cm"/></Field>
+<Field label="Région" htmlFor="reg"><Select id="reg" placeholder="Choisir une région" options={['Adamaoua','Centre','Est','Extrême-Nord','Littoral','Nord','Nord-Ouest','Ouest','Sud','Sud-Ouest']}/></Field>
+<Field label="Commune de retrait" htmlFor="dis"><Input id="dis" disabled value="Yaoundé 3e"/></Field>
+<Field label="Motif de la demande" htmlFor="motif"><Textarea id="motif" rows={2} placeholder="Facultatif"/></Field>
+<div><Checkbox checked={c} onChange={setC} label="J’atteste l’exactitude des informations" hint="Toute fausse déclaration est passible de poursuites"/><Checkbox checked={c2} onChange={setC2} label="Recevoir une copie par e-mail"/><Checkbox indeterminate label="Sélection partielle"/><Checkbox disabled label="Option indisponible"/></div>
+<div><RadioGroup name="type" legend="Type de document" value={r} onChange={setR} options={[{value:'extrait',label:'Extrait d’acte'},{value:'copie',label:'Copie intégrale',hint:'Pièce d’identité requise au retrait'}]}/><Switch checked={s} onChange={setS} label="Notifications par SMS" hint="Suivi du dossier" style={{marginTop:8}}/><Switch checked={false} disabled label="Langue : English"/></div>
+</div>;}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);</script></body></html>

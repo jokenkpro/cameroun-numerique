@@ -1,0 +1,35 @@
+import React from 'react';
+import {Icon} from '../core/Icon.jsx';
+import {Switch} from '../forms/Switch.jsx';
+import {Button} from '../core/Button.jsx';
+const KEY='cm-a11y';const DEF={contrast:false,size:100,spacing:false,dyslexia:false,falc:false,motion:false,links:false};
+const HYPER='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap';
+export function readA11y(){try{return{...DEF,...JSON.parse(localStorage.getItem(KEY)||'{}')};}catch(e){return DEF;}}
+export function applyA11y(p){if(typeof document==='undefined')return;const r=document.documentElement;r.style.fontSize=(p.size||100)+'%';r.setAttribute('data-theme',p.contrast?'sombre':'');r.style.letterSpacing=p.spacing?'0.06em':'';r.style.wordSpacing=p.spacing?'0.16em':'';r.style.setProperty('--font-sans',p.dyslexia?'"Atkinson Hyperlegible",system-ui,sans-serif':'"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif');if(p.dyslexia&&!document.getElementById('cm-hyper')){const l=document.createElement('link');l.id='cm-hyper';l.rel='stylesheet';l.href=HYPER;document.head.appendChild(l);}r.style.setProperty('--duration-fast',p.motion?'0ms':'');r.style.setProperty('--duration-base',p.motion?'0ms':'');r.style.setProperty('--duration-slow',p.motion?'0ms':'');r.setAttribute('data-falc',p.falc?'true':'false');r.setAttribute('data-links',p.links?'strong':'');}
+/** Panneau d'accessibilité : réglages persistants (localStorage), appliqués à <html>. */
+export function AccessPanel({open,onClose,onChange}){
+  const [p,setP]=React.useState(readA11y);
+  React.useEffect(()=>{applyA11y(p);localStorage.setItem(KEY,JSON.stringify(p));onChange&&onChange(p);},[p]);
+  React.useEffect(()=>{if(!open)return;const k=e=>{if(e.key==='Escape')onClose&&onClose();};document.addEventListener('keydown',k);return()=>document.removeEventListener('keydown',k);},[open]);
+  if(!open)return null;
+  const set=k=>v=>setP(s=>({...s,[k]:v}));
+  const sizeBtn=(v,l)=><button key={v} type="button" aria-pressed={p.size===v} onClick={()=>set('size')(v)} style={{all:'unset',boxSizing:'border-box',cursor:'pointer',flex:1,height:44,display:'inline-flex',alignItems:'center',justifyContent:'center',font:'var(--type-label)',fontWeight:600,border:'2px solid '+(p.size===v?'var(--cm-vert-800)':'var(--border-default)'),background:p.size===v?'var(--surface-brand-soft)':'transparent',color:'var(--text-body)'}}>{l}</button>;
+  return <div role="dialog" aria-modal="true" aria-labelledby="a11y-title" style={{position:'fixed',inset:0,zIndex:1000,display:'flex',justifyContent:'flex-end',fontFamily:'var(--font-sans)'}}>
+    <div onClick={onClose} style={{position:'absolute',inset:0,background:'var(--surface-overlay)'}}/>
+    <aside style={{position:'relative',width:'min(420px,100%)',background:'var(--surface-card)',color:'var(--text-body)',height:'100%',overflowY:'auto',boxShadow:'var(--shadow-lg)',display:'flex',flexDirection:'column'}}>
+      <div style={{height:4,background:'var(--brand-band)'}}/>
+      <div style={{padding:'var(--space-6)',display:'flex',alignItems:'flex-start',gap:12,borderBottom:'1px solid var(--border-default)'}}><Icon name="accessibility" size={24} color="var(--cm-vert-800)"/><div style={{flex:1}}><h2 id="a11y-title" style={{font:'var(--type-h5)',margin:0}}>Accessibilité</h2><p style={{font:'var(--type-body-sm)',color:'var(--text-muted)',margin:'4px 0 0'}}>Réglages conservés sur tous les sites de l’État et dans votre Identité Cameroun.</p></div><button type="button" onClick={onClose} aria-label="Fermer" style={{all:'unset',cursor:'pointer',width:44,height:44,display:'inline-flex',alignItems:'center',justifyContent:'center',margin:-10}}><Icon name="x" size={20}/></button></div>
+      <div style={{padding:'var(--space-6)',display:'grid',gap:'var(--space-6)'}}>
+        <fieldset style={{border:0,padding:0,margin:0}}><legend style={{font:'var(--type-label)',fontWeight:600,marginBottom:8}}>Taille du texte</legend><div style={{display:'flex',gap:6}}>{sizeBtn(100,'A')}{sizeBtn(115,'A+')}{sizeBtn(130,'A++')}{sizeBtn(150,'A+++')}</div></fieldset>
+        <Switch checked={p.contrast} onChange={set('contrast')} label="Contraste renforcé (fond sombre)" hint="Texte clair sur ébène, focus jaune."/>
+        <Switch checked={p.spacing} onChange={set('spacing')} label="Espacement des lettres et des mots" hint="Facilite la lecture en cas de dyslexie."/>
+        <Switch checked={p.dyslexia} onChange={set('dyslexia')} label="Police à lecture facilitée" hint="Atkinson Hyperlegible : lettres distinctes, chiffres non ambigus."/>
+        <Switch checked={p.falc} onChange={set('falc')} label="Facile à lire et à comprendre (FALC)" hint="Phrases courtes, un message par paragraphe, pictogrammes. Les pages qui disposent d’une version FALC l’affichent."/>
+        <Switch checked={p.links} onChange={set('links')} label="Liens soulignés et boutons contrastés"/>
+        <Switch checked={p.motion} onChange={set('motion')} label="Réduire les animations"/>
+        <div style={{display:'flex',gap:12,justifyContent:'space-between',flexWrap:'wrap'}}><Button variant="tertiary" iconLeft="rotate-ccw" onClick={()=>setP(DEF)}>Réinitialiser</Button><Button onClick={onClose}>Terminé</Button></div>
+        <p style={{font:'var(--type-caption)',color:'var(--text-subtle)',fontWeight:400,margin:0}}>Ce site vise la conformité RGAA 4 / WCAG 2.2 AA. <a href="#">Déclaration d’accessibilité</a> · <a href="#">Signaler un obstacle</a></p>
+      </div>
+    </aside>
+  </div>;
+}

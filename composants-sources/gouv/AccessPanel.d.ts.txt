@@ -1,0 +1,6 @@
+import * as React from 'react';
+export interface A11yPrefs{contrast:boolean;size:100|115|130|150;spacing:boolean;dyslexia:boolean;falc:boolean;motion:boolean;links:boolean;}
+export interface AccessPanelProps{open:boolean;onClose?:()=>void;/** Called with the full preference object on every change */onChange?:(prefs:A11yPrefs)=>void;}
+export declare function AccessPanel(props:AccessPanelProps):JSX.Element|null;
+export declare function readA11y():A11yPrefs;
+export declare function applyA11y(prefs:A11yPrefs):void;

@@ -1,0 +1,4 @@
+import * as React from 'react';
+export interface TableColumn{key:string;label:React.ReactNode;align?:'left'|'right'|'center';/** Render value in IBM Plex Mono (references, amounts) */mono?:boolean;strong?:boolean;render?:(value:any,row:any)=>React.ReactNode;}
+export interface TableProps{columns:TableColumn[];rows:any[];caption?:React.ReactNode;dense?:boolean;striped?:boolean;rowKey?:(row:any,index:number)=>string;style?:React.CSSProperties;}
+export declare function Table(props:TableProps):JSX.Element;

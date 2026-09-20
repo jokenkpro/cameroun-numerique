@@ -1,0 +1,3 @@
+import * as React from 'react';
+export interface IconProps{/** Lucide icon name, kebab-case (e.g. "arrow-right") */name:string;size?:number;strokeWidth?:number;color?:string;/** Accessible label; omit for decorative icons */label?:string;style?:React.CSSProperties;}
+export declare function Icon(props:IconProps):JSX.Element;
